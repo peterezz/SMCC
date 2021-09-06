@@ -1,0 +1,116 @@
+﻿
+@model SMCC.Models.CourseAppointment
+
+@{
+    ViewBag.Title = "Course";
+    Layout = "~/Views/MainLayout.cshtml";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Course</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Home/AdminDashBoard">Home</a></li>
+                    <li class="breadcrumb-item active">Course</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<div class="row">
+    <!-- left column -->
+    <div class="col-md-12">
+        <!-- general form elements -->
+        <div class="card card-primary" >
+            <div class="card-header">
+                <h3 class="card-title" style="float:right">بحث عن كورس</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            @using (Ajax.BeginForm("SearchCourse", "Search", new AjaxOptions { UpdateTargetId = "div1" }))
+            {
+                <div class="card-body" dir="rtl">
+
+                    <div class="form-group">
+                        <p style="float:right; color:blue">ادخل الفترة التى يبدأ فيها الكورس</p>
+                        <br />
+                        <br />
+                        <div class="row">
+                            <div class="col-3">
+                                @Html.LabelFor(model=>model.courseID,"اختر اسم الكورس")
+                                @Html.DropDownListFor(model=>model.courseID,(SelectList)ViewBag.CourseName,"")
+                                <br />
+                                @Html.ValidationMessageFor(model=>model.courseID, null, new { @style = "color:red;" })
+                            </div>
+                            <div class="col-3" style="padding-right:40px">
+                                @Html.LabelFor(model => model.startDate, "من", new { @style = "float:right;" })
+                                @Html.EditorFor(model => model.startDate, new { @class = "form-control" })
+                                <br />
+                                @Html.ValidationMessageFor(model => model.startDate, null, new { @style = "color:red;" })
+
+                            </div>
+                            <div class="col-3" style="padding-right:40px">
+                                @Html.LabelFor(model => model.endDate, "الى", new { @style = "float:right;" })
+                                @Html.EditorFor(model => model.endDate, new { @class = "form-control" })
+                                <br />
+                                @Html.ValidationMessageFor(model => model.endDate, null, new { @style = "color:red;" })
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <input type="submit" class="btn btn-primary" name="search" value="بحث">
+                    <br /><br />
+
+
+
+                </div>
+                
+
+            }
+
+        </div>
+
+
+
+
+
+        <div id="div1">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

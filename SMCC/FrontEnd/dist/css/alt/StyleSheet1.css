@@ -1,0 +1,38 @@
+﻿body {
+}
+
+.container {
+    background-color:black;
+    border-radius: 3px;
+    transition: .5s ease-in;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,.4);
+}
+.content {
+    width: 400px;
+    height: 350px;
+    background: white;
+    border-radius: 3px;
+    transition: .5s ease-in;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,.4);
+}
+
+
+.header {
+    height: 35px;
+    background: #27ae60;
+    
+    border-radius: 3px 3px 0 0;
+    box-shadow: 0 2px 3px 0 rgba(0,0,0,.2);
+
+}
+
+    .header h2 {
+        color: white;
+        text-align:center;
+        
+        font-weight: normal;
+        font-size:24px;
+    }
+
+
+

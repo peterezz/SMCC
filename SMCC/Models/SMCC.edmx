@@ -1,0 +1,637 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SMCC_SystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Classes">
+          <Key>
+            <PropertyRef Name="ClassID" />
+          </Key>
+          <Property Name="ClassID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClassName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CourseAppointment">
+          <Key>
+            <PropertyRef Name="AppointmentID" />
+          </Key>
+          <Property Name="AppointmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="startDate" Type="date" />
+          <Property Name="endDate" Type="date" />
+          <Property Name="day1" Type="nvarchar" MaxLength="50" />
+          <Property Name="day2" Type="nvarchar" MaxLength="50" />
+          <Property Name="day3" Type="nvarchar" MaxLength="50" />
+          <Property Name="startTime" Type="time" Precision="7" />
+          <Property Name="endTime" Type="time" Precision="7" />
+          <Property Name="price" Type="money" />
+          <Property Name="teacherID" Type="int" />
+          <Property Name="classID" Type="int" />
+          <Property Name="courseID" Type="int" />
+        </EntityType>
+        <EntityType Name="Courses">
+          <Key>
+            <PropertyRef Name="CourseID" />
+          </Key>
+          <Property Name="CourseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CourseName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NumberOFhours" Type="int" Nullable="false" />
+          <Property Name="NumberOFlectures" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="StudentID" />
+          </Key>
+          <Property Name="StudentID" Type="int" Nullable="false" />
+          <Property Name="address" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmailAddress" Type="varchar" MaxLength="50" />
+          <Property Name="workInformation" Type="nvarchar" MaxLength="100" />
+          <Property Name="churchName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Student_Course">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="CourseID" Type="int" />
+          <Property Name="StudentID" Type="int" />
+          <Property Name="El_Ba2i" Type="money" />
+          <Property Name="PayDate" Type="date" />
+          <Property Name="El_Twki3" Type="nvarchar" MaxLength="50" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="elMdfo3" Type="money" />
+        </EntityType>
+        <EntityType Name="StudentName">
+          <Key>
+            <PropertyRef Name="StudentID" />
+          </Key>
+          <Property Name="StudentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="SecondName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ThirdName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FourthName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="StudentPhoneNumber">
+          <Key>
+            <PropertyRef Name="StudentID" />
+          </Key>
+          <Property Name="StudentID" Type="int" Nullable="false" />
+          <Property Name="phoneNumber" Type="varchar" MaxLength="11" />
+          <Property Name="homeNumber" Type="varchar" MaxLength="11" />
+          <Property Name="phonenumber2" Type="varchar" MaxLength="11" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="TeacherID" />
+          </Key>
+          <Property Name="TeacherID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TeacherName" Type="nvarchar" MaxLength="50" />
+          <Property Name="teacherPhoneNumber" Type="varchar" MaxLength="11" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="pass" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_CourseAppointment_Classes">
+          <End Role="Classes" Type="Self.Classes" Multiplicity="0..1" />
+          <End Role="CourseAppointment" Type="Self.CourseAppointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classes">
+              <PropertyRef Name="ClassID" />
+            </Principal>
+            <Dependent Role="CourseAppointment">
+              <PropertyRef Name="classID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CourseAppointment_Courses">
+          <End Role="Courses" Type="Self.Courses" Multiplicity="0..1" />
+          <End Role="CourseAppointment" Type="Self.CourseAppointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courses">
+              <PropertyRef Name="CourseID" />
+            </Principal>
+            <Dependent Role="CourseAppointment">
+              <PropertyRef Name="courseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CourseAppointment_Teacher">
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="0..1" />
+          <End Role="CourseAppointment" Type="Self.CourseAppointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="TeacherID" />
+            </Principal>
+            <Dependent Role="CourseAppointment">
+              <PropertyRef Name="teacherID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Course_CourseAppointment">
+          <End Role="CourseAppointment" Type="Self.CourseAppointment" Multiplicity="0..1" />
+          <End Role="Student_Course" Type="Self.Student_Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CourseAppointment">
+              <PropertyRef Name="AppointmentID" />
+            </Principal>
+            <Dependent Role="Student_Course">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Course_StudentName">
+          <End Role="StudentName" Type="Self.StudentName" Multiplicity="0..1" />
+          <End Role="Student_Course" Type="Self.Student_Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudentName">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="Student_Course">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_StudentName">
+          <End Role="StudentName" Type="Self.StudentName" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="StudentName">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentPhoneNumber_StudentName">
+          <End Role="StudentName" Type="Self.StudentName" Multiplicity="1" />
+          <End Role="StudentPhoneNumber" Type="Self.StudentPhoneNumber" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="StudentName">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="StudentPhoneNumber">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="appointmentCheck" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="startDate" Type="date" Mode="In" />
+          <Parameter Name="endDate" Type="date" Mode="In" />
+          <Parameter Name="day1" Type="nvarchar" Mode="In" />
+          <Parameter Name="day2" Type="nvarchar" Mode="In" />
+          <Parameter Name="day3" Type="nvarchar" Mode="In" />
+          <Parameter Name="startTime" Type="time" Mode="In" />
+          <Parameter Name="endTime" Type="time" Mode="In" />
+          <Parameter Name="classID" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="SMCC_SystemModelStoreContainer">
+          <EntitySet Name="Classes" EntityType="Self.Classes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CourseAppointment" EntityType="Self.CourseAppointment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Courses" EntityType="Self.Courses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student_Course" EntityType="Self.Student_Course" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentName" EntityType="Self.StudentName" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentPhoneNumber" EntityType="Self.StudentPhoneNumber" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CourseAppointment_Classes" Association="Self.FK_CourseAppointment_Classes">
+            <End Role="Classes" EntitySet="Classes" />
+            <End Role="CourseAppointment" EntitySet="CourseAppointment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CourseAppointment_Courses" Association="Self.FK_CourseAppointment_Courses">
+            <End Role="Courses" EntitySet="Courses" />
+            <End Role="CourseAppointment" EntitySet="CourseAppointment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CourseAppointment_Teacher" Association="Self.FK_CourseAppointment_Teacher">
+            <End Role="Teacher" EntitySet="Teacher" />
+            <End Role="CourseAppointment" EntitySet="CourseAppointment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Course_CourseAppointment" Association="Self.FK_Student_Course_CourseAppointment">
+            <End Role="CourseAppointment" EntitySet="CourseAppointment" />
+            <End Role="Student_Course" EntitySet="Student_Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Course_StudentName" Association="Self.FK_Student_Course_StudentName">
+            <End Role="StudentName" EntitySet="StudentName" />
+            <End Role="Student_Course" EntitySet="Student_Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_StudentName" Association="Self.FK_Student_StudentName">
+            <End Role="StudentName" EntitySet="StudentName" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentPhoneNumber_StudentName" Association="Self.FK_StudentPhoneNumber_StudentName">
+            <End Role="StudentName" EntitySet="StudentName" />
+            <End Role="StudentPhoneNumber" EntitySet="StudentPhoneNumber" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SMCC_SystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SMCC_SystemEntities3" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="appointmentCheck">
+            <Parameter Name="startDate" Mode="In" Type="DateTime" />
+            <Parameter Name="endDate" Mode="In" Type="DateTime" />
+            <Parameter Name="day1" Mode="In" Type="String" />
+            <Parameter Name="day2" Mode="In" Type="String" />
+            <Parameter Name="day3" Mode="In" Type="String" />
+            <Parameter Name="startTime" Mode="In" Type="Time" />
+            <Parameter Name="endTime" Mode="In" Type="Time" />
+            <Parameter Name="classID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="Classes" EntityType="SMCC_SystemModel.Class" />
+          <EntitySet Name="CourseAppointments" EntityType="SMCC_SystemModel.CourseAppointment" />
+          <EntitySet Name="Courses" EntityType="SMCC_SystemModel.Cours" />
+          <EntitySet Name="Students" EntityType="SMCC_SystemModel.Student" />
+          <EntitySet Name="Student_Course" EntityType="SMCC_SystemModel.Student_Course" />
+          <EntitySet Name="StudentNames" EntityType="SMCC_SystemModel.StudentName" />
+          <EntitySet Name="StudentPhoneNumbers" EntityType="SMCC_SystemModel.StudentPhoneNumber" />
+          <EntitySet Name="sysdiagrams" EntityType="SMCC_SystemModel.sysdiagram" />
+          <EntitySet Name="Teachers" EntityType="SMCC_SystemModel.Teacher" />
+          <EntitySet Name="Users" EntityType="SMCC_SystemModel.User" />
+          <AssociationSet Name="FK_CourseAppointment_Classes" Association="SMCC_SystemModel.FK_CourseAppointment_Classes">
+            <End Role="Class" EntitySet="Classes" />
+            <End Role="CourseAppointment" EntitySet="CourseAppointments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CourseAppointment_Courses" Association="SMCC_SystemModel.FK_CourseAppointment_Courses">
+            <End Role="Cours" EntitySet="Courses" />
+            <End Role="CourseAppointment" EntitySet="CourseAppointments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CourseAppointment_Teacher" Association="SMCC_SystemModel.FK_CourseAppointment_Teacher">
+            <End Role="Teacher" EntitySet="Teachers" />
+            <End Role="CourseAppointment" EntitySet="CourseAppointments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Course_CourseAppointment" Association="SMCC_SystemModel.FK_Student_Course_CourseAppointment">
+            <End Role="CourseAppointment" EntitySet="CourseAppointments" />
+            <End Role="Student_Course" EntitySet="Student_Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_StudentName" Association="SMCC_SystemModel.FK_Student_StudentName">
+            <End Role="StudentName" EntitySet="StudentNames" />
+            <End Role="Student" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Course_StudentName" Association="SMCC_SystemModel.FK_Student_Course_StudentName">
+            <End Role="StudentName" EntitySet="StudentNames" />
+            <End Role="Student_Course" EntitySet="Student_Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentPhoneNumber_StudentName" Association="SMCC_SystemModel.FK_StudentPhoneNumber_StudentName">
+            <End Role="StudentName" EntitySet="StudentNames" />
+            <End Role="StudentPhoneNumber" EntitySet="StudentPhoneNumbers" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Class">
+          <Key>
+            <PropertyRef Name="ClassID" />
+          </Key>
+          <Property Name="ClassID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClassName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CourseAppointments" Relationship="SMCC_SystemModel.FK_CourseAppointment_Classes" FromRole="Class" ToRole="CourseAppointment" />
+        </EntityType>
+        <EntityType Name="CourseAppointment">
+          <Key>
+            <PropertyRef Name="AppointmentID" />
+          </Key>
+          <Property Name="AppointmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="startDate" Type="DateTime" Precision="0" />
+          <Property Name="endDate" Type="DateTime" Precision="0" />
+          <Property Name="day1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="day2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="day3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="startTime" Type="Time" Precision="7" />
+          <Property Name="endTime" Type="Time" Precision="7" />
+          <Property Name="price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="teacherID" Type="Int32" />
+          <Property Name="classID" Type="Int32" />
+          <Property Name="courseID" Type="Int32" />
+          <NavigationProperty Name="Class" Relationship="SMCC_SystemModel.FK_CourseAppointment_Classes" FromRole="CourseAppointment" ToRole="Class" />
+          <NavigationProperty Name="Cours" Relationship="SMCC_SystemModel.FK_CourseAppointment_Courses" FromRole="CourseAppointment" ToRole="Cours" />
+          <NavigationProperty Name="Teacher" Relationship="SMCC_SystemModel.FK_CourseAppointment_Teacher" FromRole="CourseAppointment" ToRole="Teacher" />
+          <NavigationProperty Name="Student_Course" Relationship="SMCC_SystemModel.FK_Student_Course_CourseAppointment" FromRole="CourseAppointment" ToRole="Student_Course" />
+        </EntityType>
+        <EntityType Name="Cours">
+          <Key>
+            <PropertyRef Name="CourseID" />
+          </Key>
+          <Property Name="CourseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourseName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NumberOFhours" Type="Int32" Nullable="false" />
+          <Property Name="NumberOFlectures" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CourseAppointments" Relationship="SMCC_SystemModel.FK_CourseAppointment_Courses" FromRole="Cours" ToRole="CourseAppointment" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="StudentID" />
+          </Key>
+          <Property Name="StudentID" Type="Int32" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="workInformation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="churchName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="StudentName" Relationship="SMCC_SystemModel.FK_Student_StudentName" FromRole="Student" ToRole="StudentName" />
+        </EntityType>
+        <EntityType Name="Student_Course">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="CourseID" Type="Int32" />
+          <Property Name="StudentID" Type="Int32" />
+          <Property Name="El_Ba2i" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PayDate" Type="DateTime" Precision="0" />
+          <Property Name="El_Twki3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="elMdfo3" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="CourseAppointment" Relationship="SMCC_SystemModel.FK_Student_Course_CourseAppointment" FromRole="Student_Course" ToRole="CourseAppointment" />
+          <NavigationProperty Name="StudentName" Relationship="SMCC_SystemModel.FK_Student_Course_StudentName" FromRole="Student_Course" ToRole="StudentName" />
+        </EntityType>
+        <EntityType Name="StudentName">
+          <Key>
+            <PropertyRef Name="StudentID" />
+          </Key>
+          <Property Name="StudentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SecondName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ThirdName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FourthName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Student" Relationship="SMCC_SystemModel.FK_Student_StudentName" FromRole="StudentName" ToRole="Student" />
+          <NavigationProperty Name="Student_Course" Relationship="SMCC_SystemModel.FK_Student_Course_StudentName" FromRole="StudentName" ToRole="Student_Course" />
+          <NavigationProperty Name="StudentPhoneNumber" Relationship="SMCC_SystemModel.FK_StudentPhoneNumber_StudentName" FromRole="StudentName" ToRole="StudentPhoneNumber" />
+        </EntityType>
+        <EntityType Name="StudentPhoneNumber">
+          <Key>
+            <PropertyRef Name="StudentID" />
+          </Key>
+          <Property Name="StudentID" Type="Int32" Nullable="false" />
+          <Property Name="phoneNumber" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="homeNumber" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="phonenumber2" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="StudentName" Relationship="SMCC_SystemModel.FK_StudentPhoneNumber_StudentName" FromRole="StudentPhoneNumber" ToRole="StudentName" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="TeacherID" />
+          </Key>
+          <Property Name="TeacherID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TeacherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="teacherPhoneNumber" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CourseAppointments" Relationship="SMCC_SystemModel.FK_CourseAppointment_Teacher" FromRole="Teacher" ToRole="CourseAppointment" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="pass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_CourseAppointment_Classes">
+          <End Type="SMCC_SystemModel.Class" Role="Class" Multiplicity="0..1" />
+          <End Type="SMCC_SystemModel.CourseAppointment" Role="CourseAppointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="ClassID" />
+            </Principal>
+            <Dependent Role="CourseAppointment">
+              <PropertyRef Name="classID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CourseAppointment_Courses">
+          <End Type="SMCC_SystemModel.Cours" Role="Cours" Multiplicity="0..1" />
+          <End Type="SMCC_SystemModel.CourseAppointment" Role="CourseAppointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cours">
+              <PropertyRef Name="CourseID" />
+            </Principal>
+            <Dependent Role="CourseAppointment">
+              <PropertyRef Name="courseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CourseAppointment_Teacher">
+          <End Type="SMCC_SystemModel.Teacher" Role="Teacher" Multiplicity="0..1" />
+          <End Type="SMCC_SystemModel.CourseAppointment" Role="CourseAppointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="TeacherID" />
+            </Principal>
+            <Dependent Role="CourseAppointment">
+              <PropertyRef Name="teacherID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Course_CourseAppointment">
+          <End Type="SMCC_SystemModel.CourseAppointment" Role="CourseAppointment" Multiplicity="0..1" />
+          <End Type="SMCC_SystemModel.Student_Course" Role="Student_Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CourseAppointment">
+              <PropertyRef Name="AppointmentID" />
+            </Principal>
+            <Dependent Role="Student_Course">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_StudentName">
+          <End Type="SMCC_SystemModel.StudentName" Role="StudentName" Multiplicity="1" />
+          <End Type="SMCC_SystemModel.Student" Role="Student" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="StudentName">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Course_StudentName">
+          <End Type="SMCC_SystemModel.StudentName" Role="StudentName" Multiplicity="0..1" />
+          <End Type="SMCC_SystemModel.Student_Course" Role="Student_Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudentName">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="Student_Course">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentPhoneNumber_StudentName">
+          <End Type="SMCC_SystemModel.StudentName" Role="StudentName" Multiplicity="1" />
+          <End Type="SMCC_SystemModel.StudentPhoneNumber" Role="StudentPhoneNumber" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="StudentName">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="StudentPhoneNumber">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SMCC_SystemModelStoreContainer" CdmEntityContainer="SMCC_SystemEntities3">
+          <FunctionImportMapping FunctionImportName="appointmentCheck" FunctionName="SMCC_SystemModel.Store.appointmentCheck" />
+          <EntitySetMapping Name="Classes">
+            <EntityTypeMapping TypeName="SMCC_SystemModel.Class">
+              <MappingFragment StoreEntitySet="Classes">
+                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+                <ScalarProperty Name="ClassID" ColumnName="ClassID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CourseAppointments">
+            <EntityTypeMapping TypeName="SMCC_SystemModel.CourseAppointment">
+              <MappingFragment StoreEntitySet="CourseAppointment">
+                <ScalarProperty Name="courseID" ColumnName="courseID" />
+                <ScalarProperty Name="classID" ColumnName="classID" />
+                <ScalarProperty Name="teacherID" ColumnName="teacherID" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="endTime" ColumnName="endTime" />
+                <ScalarProperty Name="startTime" ColumnName="startTime" />
+                <ScalarProperty Name="day3" ColumnName="day3" />
+                <ScalarProperty Name="day2" ColumnName="day2" />
+                <ScalarProperty Name="day1" ColumnName="day1" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="AppointmentID" ColumnName="AppointmentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Courses">
+            <EntityTypeMapping TypeName="SMCC_SystemModel.Cours">
+              <MappingFragment StoreEntitySet="Courses">
+                <ScalarProperty Name="NumberOFlectures" ColumnName="NumberOFlectures" />
+                <ScalarProperty Name="NumberOFhours" ColumnName="NumberOFhours" />
+                <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="SMCC_SystemModel.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="churchName" ColumnName="churchName" />
+                <ScalarProperty Name="workInformation" ColumnName="workInformation" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Student_Course">
+            <EntityTypeMapping TypeName="SMCC_SystemModel.Student_Course">
+              <MappingFragment StoreEntitySet="Student_Course">
+                <ScalarProperty Name="elMdfo3" ColumnName="elMdfo3" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="El_Twki3" ColumnName="El_Twki3" />
+                <ScalarProperty Name="PayDate" ColumnName="PayDate" />
+                <ScalarProperty Name="El_Ba2i" ColumnName="El_Ba2i" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentNames">
+            <EntityTypeMapping TypeName="SMCC_SystemModel.StudentName">
+              <MappingFragment StoreEntitySet="StudentName">
+                <ScalarProperty Name="FourthName" ColumnName="FourthName" />
+                <ScalarProperty Name="ThirdName" ColumnName="ThirdName" />
+                <ScalarProperty Name="SecondName" ColumnName="SecondName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentPhoneNumbers">
+            <EntityTypeMapping TypeName="SMCC_SystemModel.StudentPhoneNumber">
+              <MappingFragment StoreEntitySet="StudentPhoneNumber">
+                <ScalarProperty Name="phonenumber2" ColumnName="phonenumber2" />
+                <ScalarProperty Name="homeNumber" ColumnName="homeNumber" />
+                <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SMCC_SystemModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teachers">
+            <EntityTypeMapping TypeName="SMCC_SystemModel.Teacher">
+              <MappingFragment StoreEntitySet="Teacher">
+                <ScalarProperty Name="teacherPhoneNumber" ColumnName="teacherPhoneNumber" />
+                <ScalarProperty Name="TeacherName" ColumnName="TeacherName" />
+                <ScalarProperty Name="TeacherID" ColumnName="TeacherID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="SMCC_SystemModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="pass" ColumnName="pass" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

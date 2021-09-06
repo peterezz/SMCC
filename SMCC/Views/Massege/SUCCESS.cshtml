@@ -1,0 +1,35 @@
+﻿
+@{
+    Layout = null;
+    ViewBag.Title = "Massege";
+}
+
+<!DOCTYPE html>
+<!-- Created By CodingNepal -->
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <!-- <title>Custom Modal Box | CodingNepal</title> -->
+    <title>Massege</title>
+    <link href="~/FrontEnd/dist/css/FloatingMassege.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="center">
+        <input type="checkbox" id="click">
+        <label for="click" class="click-me">click me</label>
+        <div class="content">
+            <div class="header">
+                <h2>SUCCESS</h2>
+                <a style="text-decoration:none" href="/adminDashBoard/create" for="click" class="fas fa-times"></a>
+            </div>
+            <label for="click" class="fas fa-check"></label>
+            <p>تم التسجيل بنجاح</p>
+            <div class="line"></div>
+            <a style="text-decoration:none" href="/@ViewBag.controllerName/@ViewBag.actionName" for="click" class="close-btn">الاستمرار بتسجيل البيانات</a>
+            <a style="text-decoration:none" href="/Home/adminDashBoard" for="click" class="close-btnn">الرجوع للصفحة الرئسية</a>
+
+        </div>
+    </div>
+</body>
+</html>

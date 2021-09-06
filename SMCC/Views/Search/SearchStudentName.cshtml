@@ -1,0 +1,111 @@
+﻿<div>
+    @model IEnumerable<SMCC.Models.Student>
+@{
+
+    Layout = null;
+}
+
+
+
+
+
+
+<!-- /.row -->
+<div class="row">
+    <div class="col-12">
+        <div class="card" style="width:1000px">
+
+            <!-- /.card-header -->
+        
+
+
+
+            <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                    <tr>
+                        <th>تسجل كورس</th>
+                        <th>رقم موبايل</th>
+                        <th>رقم موبايل</th>
+                        <th>تليفون المنزل</th>
+                        <th>الاسم بالكامل</th>
+                    </tr>
+                    <tbody>
+                        @if (Model.Count() == 0)
+                        {
+
+
+                            <h4 style="float:right;color:red;padding-right:10px">لا يوجد سجل لهذا الطالب</h4>
+                        }
+                        else
+                        {
+                            foreach (var item in Model)
+                            {
+
+                    <tr>
+                        <td><a href="/Course/add_student/@item.StudentID">تسجيل كورس جديد</a></td>
+
+
+                        <td>@item.StudentPhoneNumber.phoneNumber</td>
+
+
+                        @if (item.StudentPhoneNumber.phonenumber2 != null)
+                        {
+                            <td>@item.StudentPhoneNumber.phonenumber2</td>
+                        }
+                        else
+                        {
+                            <td>ـــــــــــــــــــــــــــــ</td>
+                        }
+
+                        @if (item.StudentPhoneNumber.homeNumber != null) { 
+
+                            <td>@item.StudentPhoneNumber.homeNumber</td>
+                        }
+                        else
+                        {
+                        <td>ـــــــــــــــــــــــــــــ</td>
+                        }
+                        <td>
+                            @item.StudentName.FirstName
+
+                            @item.StudentName.SecondName
+                            @item.StudentName.ThirdName
+                            @item.StudentName.FourthName
+
+                        </td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </tr>
+
+                            }
+                        }
+
+
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer">
+
+                <a style="text-decoration:none;float:right" href="/Student/Add?FullName=@ViewBag.FullName" for="click" class="btn btn-primary">تسجيل طالب جديد</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+</div>

@@ -1,0 +1,100 @@
+﻿@model SMCC.Models.StudentName
+    @{
+        ViewBag.Title = "Add student";
+        Layout = "~/Views/MainLayout.cshtml";
+    }
+
+    <!-- Content Wrapper. Contains page content -->
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Add New Student</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/AdminDashBoard/Home">Home</a></li>
+                        <li class="breadcrumb-item active">Add New Student</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+
+    @using (Html.BeginForm("AddStudentData", "Student", FormMethod.Post))
+    {
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <div class="card card-primary" >
+                    <div class="card-header">
+                        <h3 class="card-title" style="float:right">بيانات الطالب</h3>
+                    </div>
+
+                    <div class="card-body" dir="rtl">
+
+                        <div class="form-group">
+                            <label style="float:right">العنوان</label>
+                            @Html.ValidationMessageFor(model => model.Student.address, null, new { @style = "color:red" })
+                            @Html.TextBoxFor(model => model.Student.address, new { @class = "form-control" })
+
+
+                        </div>
+                        <div class="form-group">
+                            <label style="float:right">رقم موبايل </label>
+                            @Html.ValidationMessageFor(model => model.StudentPhoneNumber.phoneNumber, null, new { @style = "color:red" })
+
+                            @Html.TextBoxFor(model => model.StudentPhoneNumber.phoneNumber, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label style="float:right">رقم موبايل ثانى <span style="color:forestgreen">(اختيارى)</span></label>
+                            @Html.ValidationMessageFor(model => model.StudentPhoneNumber.phonenumber2, null, new { @style = "color:red" })
+
+                            @Html.TextBoxFor(model => model.StudentPhoneNumber.phonenumber2, new { @class = "form-control" })
+                        </div>
+
+                        <div class="form-group">
+                            <label style="float:right">رقم التليفون الارضى<span style="color:forestgreen">(اختيارى)</span></label>
+                            @Html.ValidationMessageFor(model => model.StudentPhoneNumber.homeNumber, null, new { @style = "color:red" })
+
+                            @Html.TextBoxFor(model => model.StudentPhoneNumber.homeNumber, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label style="float:right">البريد الالكترونى<span style="color:forestgreen">(اختيارى)</span></label>
+                            @Html.ValidationMessageFor(model => model.Student.EmailAddress, null, new { @style = "color:red" })
+
+                            @Html.TextBoxFor(model => model.Student.EmailAddress, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label style="float:right">الكنيسة التابع لها</label>
+                            @Html.ValidationMessageFor(model => model.Student.churchName, null, new { @style = "color:red" })
+                            @Html.TextBoxFor(model => model.Student.churchName, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label style="float:right">المؤهل او الوظيفة</label>
+                            @Html.ValidationMessageFor(model => model.Student.workInformation, null, new { @style = "color:red" })
+
+                            @Html.TextBoxFor(model => model.Student.workInformation, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="card-footer">
+
+                        <input type="submit" class="btn btn-primary" name="save" value="التالى">
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+    }

@@ -1,0 +1,131 @@
+﻿<div>
+    @model SMCC.Models.Student_Course
+    @{
+        ViewBag.Title = "add_student";
+        Layout = "~/Views/MainLayout.cshtml";
+    }
+
+    <!-- Content Wrapper. Contains page content -->
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Add New Student</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/AdminDashBoard/Home">Home</a></li>
+                        <li class="breadcrumb-item active">Student Regester Course</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    @using (Html.BeginForm("add_student", "Course", FormMethod.Post))
+    {
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <div class="card card-primary" >
+                    <div class="card-header">
+                        <h3 class="card-title" style="float:right">بيانات الكورس</h3>
+                    </div>
+                    <div class="card-body" dir="rtl">
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-4">
+                                    <label style="float:right">تاريخ حجز الكورس</label>
+
+                                    @Html.EditorFor(model => model.PayDate, new { @class = "form-control" })
+                                    <br />
+                                    @Html.ValidationMessageFor(model => model.PayDate, null, new { @style = "color:red" })
+
+
+                                </div>
+                                <div class="col-4">
+                                    @Html.LabelFor(model => model.elMdfo3, "المبلغ المدفوع", new { @style = "float:right" })
+
+                                    @Html.EditorFor(model => model.elMdfo3, new { @class = "form-control" })
+                                    <br />
+                                    @Html.ValidationMessageFor(model => model.elMdfo3, null, new { @style = "color:red" })
+
+
+                                </div>
+                                <div class="col-4">
+                                    @Html.LabelFor(model => model.El_Ba2i, "المبلغ المتبقى")
+                                    @Html.EditorFor(model => model.El_Ba2i, new { @class = "form-control" })
+                                    <br />
+                                    @Html.ValidationMessageFor(model => model.El_Ba2i, null, new { @style = "color:red" })
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <br />
+
+
+
+
+                        <br />
+
+
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-2">
+                                    @Html.LabelFor(model => model.Notes, "ملاحظات", new { @style = "float:right" })
+                                </div>
+                                <div class="col-1">
+                                    @Html.EditorFor(model => model.Notes, new { @class = "form-control" })
+
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                        <br />
+                        <br />
+
+                        <div class="form-group">
+
+                            @Html.LabelFor(model => model.El_Twki3, "التوقيع", new { @style = "float:right" })
+                            @Html.ValidationMessageFor(model => model.El_Twki3, null, new { @style = "color:red" })
+
+                            <br />
+                            @Html.TextBoxFor(model => model.El_Twki3, new { @class = "form-control" })
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="card-footer">
+
+                        <input type="submit" class="btn btn-primary" name="save" value="تسجيل">
+
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+        if (ViewBag.Message != null)
+        {
+            <script type="text/javascript">
+
+                                           window.onload = function () {
+                                              alert("@ViewBag.Message");
+                                           };
+            </script>
+        }
+    }
+
+</div>
