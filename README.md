@@ -1,6 +1,6 @@
 # SMCC
-## this is a system that record all students, courses and teacher data using ASP.NET MVC framework, Entity Framework and Microsoft SQL server 
-I used reposatory design pattern here
+## this is a system that record all students, courses and teacher data using *ASP.NET MVC* and *Entity Framework* and I used *reposatory design pattern* here
+
 this system is made for **Admin** (secrtary) only 
 
 > #### admin can access the system by login to
