@@ -12,3 +12,5 @@ this system is made for **Admin** (secrtary) only
 > 
 >  *if the student is  **pre-registered**, the system will take him/her ID and add it to the corse appointment
 
+This project is been deployed on smarterasp and its link is *http://engpeter-001-site1.dtempurl.com/*
+
