@@ -11,7 +11,7 @@ namespace SMCC.Controllers
     {
 
         // GET: Home
-        SMCC_SystemEntities3 db = new SMCC_SystemEntities3();
+        SMCCSystemEntities db = new SMCCSystemEntities();
         [HttpPost]
         public ActionResult Login(string email, string pass)
         {

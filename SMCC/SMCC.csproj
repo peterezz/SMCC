@@ -2039,13 +2039,6 @@
     <Content Include="FrontEnd\plugins\uplot\uPlot.iife.min.js" />
     <Content Include="FrontEnd\plugins\uplot\uPlot.min.css" />
     <Content Include="Global.asax" />
-    <EntityDeploy Include="Models\SMCC.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SMCC.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\SMCC.edmx.diagram">
-      <DependentUpon>SMCC.edmx</DependentUpon>
-    </Content>
     <Content Include="FrontEnd\dist\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.eot" />
     <Content Include="FrontEnd\dist\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.ttf" />
     <Content Include="FrontEnd\dist\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.woff" />
@@ -2121,16 +2114,23 @@
     <Content Include="FrontEnd\dist\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
     <Content Include="FrontEnd\dist\vendor\bootstrap\css\bootstrap.css.map" />
     <Content Include="FrontEnd\dist\vendor\bootstrap\css\bootstrap.min.css.map" />
-    <None Include="Scripts\jquery-3.6.0.intellisense.js" />
-    <Content Include="Models\SMCC.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SMCC.edmx</DependentUpon>
-      <LastGenOutput>SMCC.Context.cs</LastGenOutput>
+    <EntityDeploy Include="Models\Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model.edmx.diagram">
+      <DependentUpon>Model.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\SMCC.tt">
+    <None Include="Scripts\jquery-3.6.0.intellisense.js" />
+    <Content Include="Models\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SMCC.edmx</DependentUpon>
-      <LastGenOutput>SMCC.cs</LastGenOutput>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
@@ -2159,59 +2159,56 @@
     <Compile Include="Interface\ICourses.cs" />
     <Compile Include="Interface\IStudent.cs" />
     <Compile Include="Interface\ITeacher.cs" />
-    <Compile Include="Models\customTeacher.cs" />
     <Compile Include="Models\Class.cs">
-      <DependentUpon>SMCC.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Cours.cs">
-      <DependentUpon>SMCC.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CourseAppointment.cs">
-      <DependentUpon>SMCC.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\customTeacher.cs" />
     <Compile Include="Models\customCourse.cs" />
     <Compile Include="Models\CustomLogin.cs" />
     <Compile Include="Models\customPhoneNumber.cs" />
     <Compile Include="Models\CustomStudent.cs" />
     <Compile Include="Models\cutomStudentName.cs" />
+    <Compile Include="Models\Model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\Schadcustom.cs" />
     <Compile Include="Models\singeltonClass.cs" />
-    <Compile Include="Models\SMCC.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SMCC.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SMCC.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SMCC.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SMCC.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SMCC.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\Student.cs">
-      <DependentUpon>SMCC.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\StudentName.cs">
-      <DependentUpon>SMCC.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\StudentPhoneNumber.cs">
-      <DependentUpon>SMCC.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Student_Course.cs">
-      <DependentUpon>SMCC.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Student_course_custom.cs" />
-    <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>SMCC.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Teacher.cs">
-      <DependentUpon>SMCC.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
-      <DependentUpon>SMCC.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="repository\CourseRepo.cs" />

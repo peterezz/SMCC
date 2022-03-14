@@ -11,7 +11,7 @@ namespace SMCC.repository
 
     public class StudentRepo : IStudent
     {
-        internal SMCC_SystemEntities3 db = new SMCC_SystemEntities3();
+        internal SMCCSystemEntities db = new SMCCSystemEntities();
 
 
         /// <summary>

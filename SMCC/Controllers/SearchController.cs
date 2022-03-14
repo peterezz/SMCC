@@ -11,7 +11,7 @@ namespace SMCC.Controllers
 {
     public class SearchController : Controller
     {
-        SMCC_SystemEntities3 db = new SMCC_SystemEntities3();
+        SMCCSystemEntities db = new SMCCSystemEntities();
         CourseRepo repo = new CourseRepo();
        
        

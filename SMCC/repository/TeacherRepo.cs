@@ -8,7 +8,7 @@ namespace SMCC.repository
 {
     public class TeacherRepo : ITeacher
     {
-        internal SMCC_SystemEntities3 db = new SMCC_SystemEntities3();
+        internal SMCCSystemEntities db = new SMCCSystemEntities();
         public bool ADDTeacher(Teacher x)
         {
             var data = db.Teachers.Where(t => t.TeacherName == x.TeacherName && t.teacherPhoneNumber == x.teacherPhoneNumber).Count();

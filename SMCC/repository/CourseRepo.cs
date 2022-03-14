@@ -9,7 +9,7 @@ namespace SMCC.repository
 {
     public class CourseRepo : ICourses
     {
-        internal SMCC_SystemEntities3 db = new SMCC_SystemEntities3();
+        internal SMCCSystemEntities db = new SMCCSystemEntities();
 
         public bool ADDCourse(Cours Course)
         {

@@ -22,7 +22,6 @@ namespace SMCC.Models
     
         public int TeacherID { get; set; }
         public string TeacherName { get; set; }
-
         public string teacherPhoneNumber { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
